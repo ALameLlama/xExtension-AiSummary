@@ -21,6 +21,11 @@ return [
 		'language_help' => 'Langue utilisée pour les résumés générés. Auto utilise la langue de votre interface FreshRSS.',
 		'timeout' => 'Délai de requête (secondes)',
 		'timeout_help' => 'Nombre maximal de secondes pour attendre la réponse du fournisseur d\'IA. Défaut : 30. Plage : 1-300.',
+		'reasoning_effort' => 'Effort de raisonnement',
+		'reasoning_effort_none' => 'Aucun',
+		'reasoning_effort_low' => 'Faible',
+		'reasoning_effort_high' => 'Élevé',
+		'reasoning_effort_help' => 'Contrôle la quantité de raisonnement du modèle avant de répondre. Un effort plus élevé utilise plus de tokens et de temps mais peut produire de meilleurs résultats. Disponible uniquement pour certains modèles.',
 		'save' => 'Enregistrer',
 	],
 ];

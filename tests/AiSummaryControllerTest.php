@@ -136,24 +136,28 @@ final class AiSummaryControllerTest extends TestCase {
 
 	public function testCallOpenAIMethodSignature(): void {
 		$ref = new \ReflectionMethod(FreshExtension_AiSummary_Controller::class, 'callOpenAI');
-		self::assertSame(5, $ref->getNumberOfParameters());
+		self::assertSame(6, $ref->getNumberOfParameters());
 		$params = array_map(fn ($p) => $p->getName(), $ref->getParameters());
-		self::assertSame(['apiUrl', 'apiKey', 'model', 'systemPrompt', 'userPrompt'], $params);
+		self::assertSame(['apiUrl', 'apiKey', 'model', 'systemPrompt', 'userPrompt', 'reasoningEffort'], $params);
 	}
 
 	public function testCallAnthropicMethodSignature(): void {
 		$ref = new \ReflectionMethod(FreshExtension_AiSummary_Controller::class, 'callAnthropic');
-		self::assertSame(5, $ref->getNumberOfParameters());
+		self::assertSame(6, $ref->getNumberOfParameters());
+		$params = array_map(fn ($p) => $p->getName(), $ref->getParameters());
+		self::assertSame(['apiUrl', 'apiKey', 'model', 'systemPrompt', 'userPrompt', 'reasoningEffort'], $params);
 	}
 
 	public function testCallGeminiMethodSignature(): void {
 		$ref = new \ReflectionMethod(FreshExtension_AiSummary_Controller::class, 'callGemini');
-		self::assertSame(5, $ref->getNumberOfParameters());
+		self::assertSame(6, $ref->getNumberOfParameters());
+		$params = array_map(fn ($p) => $p->getName(), $ref->getParameters());
+		self::assertSame(['apiUrl', 'apiKey', 'model', 'systemPrompt', 'userPrompt', 'reasoningEffort'], $params);
 	}
 
 	public function testCallOllamaMethodSignature(): void {
 		$ref = new \ReflectionMethod(FreshExtension_AiSummary_Controller::class, 'callOllama');
-		self::assertSame(5, $ref->getNumberOfParameters());
+		self::assertSame(6, $ref->getNumberOfParameters());
 		$params = $ref->getParameters();
 		self::assertSame('apiUrl', $params[0]->getName());
 	}

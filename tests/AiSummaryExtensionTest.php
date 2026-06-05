@@ -113,4 +113,30 @@ final class AiSummaryExtensionTest extends TestCase {
 		$this->extension->handleConfigureAction();
 		self::assertSame(30, FreshRSS_Context::$user_conf->ai_summary_timeout);
 	}
+
+	public function testHandleConfigureActionSavesReasoningEffort(): void {
+		Minz_Request::setParam('_method', 'POST');
+		Minz_Request::setParam('_csrf', 'test-csrf-token');
+		Minz_Request::setParam('ai_summary_provider', 'openai');
+		Minz_Request::setParam('ai_summary_reasoning_effort', 'high');
+
+		$this->extension->handleConfigureAction();
+
+		self::assertSame('high', FreshRSS_Context::$user_conf->ai_summary_reasoning_effort);
+	}
+
+	public function testHandleConfigureActionCoercesInvalidReasoningEffort(): void {
+		Minz_Request::setParam('_method', 'POST');
+		Minz_Request::setParam('_csrf', 'test-csrf-token');
+		Minz_Request::setParam('ai_summary_provider', 'openai');
+		Minz_Request::setParam('ai_summary_reasoning_effort', 'invalid');
+
+		$this->extension->handleConfigureAction();
+
+		self::assertSame('none', FreshRSS_Context::$user_conf->ai_summary_reasoning_effort);
+
+		Minz_Request::setParam('ai_summary_reasoning_effort', '');
+		$this->extension->handleConfigureAction();
+		self::assertSame('none', FreshRSS_Context::$user_conf->ai_summary_reasoning_effort);
+	}
 }

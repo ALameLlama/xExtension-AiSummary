@@ -21,6 +21,11 @@ return [
 		'language_help' => 'Oluşturulan özetler için kullanılan dil. Otomatik, FreshRSS arayüz dilinizi kullanır.',
 		'timeout' => 'İstek Zaman Aşımı (saniye)',
 		'timeout_help' => 'AI sağlayıcısından yanıt beklenecek maksimum saniye. Varsayılan: 30. Aralık: 1-300.',
+		'reasoning_effort' => 'Çözümleme çabası',
+		'reasoning_effort_none' => 'Yok',
+		'reasoning_effort_low' => 'Düşük',
+		'reasoning_effort_high' => 'Yüksek',
+		'reasoning_effort_help' => 'Yanıt vermeden önce modelin ne kadar çözümleme yapacağını kontrol eder. Daha yüksek çaba daha fazla token ve zaman kullanır ancak daha iyi sonuçlar üretebilir. Yalnızca belirli modeller için kullanılabilir.',
 		'save' => 'Kaydet',
 	],
 ];

@@ -7,6 +7,7 @@ $apiUrl = FreshRSS_Context::$user_conf->ai_summary_api_url ?? '';
 $prompt = FreshRSS_Context::$user_conf->ai_summary_prompt ?? '';
 $language = FreshRSS_Context::$user_conf->ai_summary_language ?? '';
 $timeout = FreshRSS_Context::$user_conf->ai_summary_timeout ?? AiSummaryExtension::TIMEOUT_DEFAULT;
+$reasoningEffort = FreshRSS_Context::$user_conf->ai_summary_reasoning_effort ?? AiSummaryExtension::REASONING_EFFORT_DEFAULT;
 if ($timeout < AiSummaryExtension::TIMEOUT_MIN
 	|| $timeout > AiSummaryExtension::TIMEOUT_MAX) {
 	$timeout = AiSummaryExtension::TIMEOUT_DEFAULT;
@@ -105,6 +106,18 @@ $languages = [
 				max="<?= AiSummaryExtension::TIMEOUT_MAX ?>"
 				value="<?= (int) $timeout ?>" />
 			<p class="help"><?= _t('ext.ai_summary.timeout_help') ?></p>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="group-name" for="ai_summary_reasoning_effort"><?= _t('ext.ai_summary.reasoning_effort') ?></label>
+		<div class="group-controls">
+			<select name="ai_summary_reasoning_effort" id="ai_summary_reasoning_effort">
+				<option value="none" <?= $reasoningEffort === 'none' ? 'selected' : '' ?>><?= _t('ext.ai_summary.reasoning_effort_none') ?></option>
+				<option value="low" <?= $reasoningEffort === 'low' ? 'selected' : '' ?>><?= _t('ext.ai_summary.reasoning_effort_low') ?></option>
+				<option value="high" <?= $reasoningEffort === 'high' ? 'selected' : '' ?>><?= _t('ext.ai_summary.reasoning_effort_high') ?></option>
+			</select>
+			<p class="help"><?= _t('ext.ai_summary.reasoning_effort_help') ?></p>
 		</div>
 	</div>
 

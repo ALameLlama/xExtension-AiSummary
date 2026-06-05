@@ -21,6 +21,11 @@ return [
 		'language_help' => 'Lingua utilizzata per i riassunti generati. Auto usa la lingua dell\'interfaccia FreshRSS.',
 		'timeout' => 'Timeout della richiesta (secondi)',
 		'timeout_help' => 'Secondi massimi di attesa per la risposta del fornitore IA. Predefinito: 30. Intervallo: 1-300.',
+		'reasoning_effort' => 'Sforzo di ragionamento',
+		'reasoning_effort_none' => 'Nessuno',
+		'reasoning_effort_low' => 'Basso',
+		'reasoning_effort_high' => 'Alto',
+		'reasoning_effort_help' => 'Controlla quanto il modello ragiona prima di rispondere. Un impegno maggiore usa più token e tempo ma può produrre risultati migliori. Disponibile solo per alcuni modelli.',
 		'save' => 'Salva',
 	],
 ];

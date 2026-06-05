@@ -21,6 +21,11 @@ return [
 		'language_help' => 'Jazyk generovaných shrnutí. Automaticky používá jazyk rozhraní FreshRSS.',
 		'timeout' => 'Časový limit požadavku (sekundy)',
 		'timeout_help' => 'Maximální počet sekund čekání na odpověď poskytovatele AI. Výchozí: 30. Rozsah: 1-300.',
+		'reasoning_effort' => 'Síla uvažování',
+		'reasoning_effort_none' => 'Žádná',
+		'reasoning_effort_low' => 'Nízká',
+		'reasoning_effort_high' => 'Vysoká',
+		'reasoning_effort_help' => 'Řídí, jak moc model uvažuje před odpovědí. Vyšší síla používá více tokenů a času, ale může produkovat lepší výsledky. Dostupné pouze pro určité modely.',
 		'save' => 'Uložit',
 	],
 ];

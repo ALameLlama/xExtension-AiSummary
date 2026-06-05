@@ -21,6 +21,11 @@ return [
 		'language_help' => 'Sprache für die generierten Zusammenfassungen. Auto verwendet Ihre FreshRSS-Oberflächensprache.',
 		'timeout' => 'Anfrage-Timeout (Sekunden)',
 		'timeout_help' => 'Maximale Sekunden, die auf eine Antwort des KI-Anbieters gewartet wird. Standard: 30. Bereich: 1-300.',
+		'reasoning_effort' => 'Denkleistung',
+		'reasoning_effort_none' => 'Keine',
+		'reasoning_effort_low' => 'Niedrig',
+		'reasoning_effort_high' => 'Hoch',
+		'reasoning_effort_help' => 'Steuert, wie stark das Modell vor der Antwort nachdenkt. Höhere Leistung verwendet mehr Token und Zeit, kann aber bessere Ergebnisse liefern. Nur für bestimmte Modelle verfügbar.',
 		'save' => 'Speichern',
 	],
 ];

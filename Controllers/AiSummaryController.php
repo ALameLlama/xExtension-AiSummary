@@ -114,6 +114,11 @@ PROMPT;
 		$timeout = is_int($timeout) && $timeout >= AiSummaryExtension::TIMEOUT_MIN && $timeout <= AiSummaryExtension::TIMEOUT_MAX
 			? $timeout
 			: AiSummaryExtension::TIMEOUT_DEFAULT;
+		/** @var mixed */
+		$reasoningEffort = $user_conf->ai_summary_reasoning_effort;
+		$reasoningEffort = is_string($reasoningEffort) && in_array($reasoningEffort, [AiSummaryExtension::REASONING_EFFORT_NONE, AiSummaryExtension::REASONING_EFFORT_LOW, AiSummaryExtension::REASONING_EFFORT_HIGH], true)
+			? $reasoningEffort
+			: AiSummaryExtension::REASONING_EFFORT_DEFAULT;
 
 		if ($provider !== 'ollama' && $apiKey === '') {
 			header('Content-Type: application/json; charset=UTF-8');
@@ -193,6 +198,7 @@ PROMPT;
 				$model !== '' ? $model : self::DEFAULT_MODELS[$provider],
 				$systemPrompt,
 				$userPrompt,
+				$reasoningEffort,
 			);
 
 			$this->sendEvent('done', '{}');
@@ -226,7 +232,7 @@ PROMPT;
 		echo "event: {$event}\ndata: {$data}\n\n";
 	}
 
-	private function callOpenai(string $apiUrl, string $apiKey, string $model, string $systemPrompt, string $userPrompt): void {
+	private function callOpenai(string $apiUrl, string $apiKey, string $model, string $systemPrompt, string $userPrompt, string $reasoningEffort = 'none'): void {
 		$url = rtrim($apiUrl, '/') . '/v1/chat/completions';
 		$messages = [];
 		if ($systemPrompt !== '') {
@@ -234,9 +240,17 @@ PROMPT;
 		}
 		$messages[] = ['role' => 'user', 'content' => $userPrompt];
 
+		$payload = [
+			'model' => $model,
+			'messages' => $messages,
+			'max_tokens' => 1024,
+			'stream' => true,
+			'reasoning_effort' => $reasoningEffort,
+		];
+
 		$this->curlStreamRequest(
 			$url,
-			['model' => $model, 'messages' => $messages, 'max_tokens' => 1024, 'stream' => true],
+			$payload,
 			['Authorization: Bearer ' . $apiKey, 'Content-Type: application/json'],
 			function (string $line): void {
 				if (!str_starts_with($line, 'data: ')) {
@@ -273,7 +287,7 @@ PROMPT;
 		);
 	}
 
-	private function callAnthropic(string $apiUrl, string $apiKey, string $model, string $systemPrompt, string $userPrompt): void {
+	private function callAnthropic(string $apiUrl, string $apiKey, string $model, string $systemPrompt, string $userPrompt, string $reasoningEffort = 'none'): void {
 		$url = rtrim($apiUrl, '/') . '/v1/messages';
 
 		$payload = [
@@ -286,6 +300,12 @@ PROMPT;
 		];
 		if ($systemPrompt !== '') {
 			$payload['system'] = $systemPrompt;
+		}
+		if ($reasoningEffort !== 'none') {
+			$payload['thinking'] = [
+				'type' => 'enabled',
+				'budget_tokens' => $reasoningEffort === 'low' ? 1024 : 32000,
+			];
 		}
 
 		$this->curlStreamRequest(
@@ -315,7 +335,7 @@ PROMPT;
 		);
 	}
 
-	private function callGemini(string $apiUrl, string $apiKey, string $model, string $systemPrompt, string $userPrompt): void {
+	private function callGemini(string $apiUrl, string $apiKey, string $model, string $systemPrompt, string $userPrompt, string $reasoningEffort = 'none'): void {
 		$url = rtrim($apiUrl, '/') . '/v1beta/models/'
 			. urlencode($model)
 			. ':streamGenerateContent?alt=sse&key=' . urlencode($apiKey);
@@ -328,6 +348,11 @@ PROMPT;
 		if ($systemPrompt !== '') {
 			$payload['system_instruction'] = [
 				'parts' => [['text' => $systemPrompt]],
+			];
+		}
+		if ($reasoningEffort !== 'none') {
+			$payload['thinking_config'] = [
+				'thinking_budget' => $reasoningEffort === 'low' ? 1024 : 32000,
 			];
 		}
 
@@ -374,7 +399,7 @@ PROMPT;
 		);
 	}
 
-	private function callOllama(string $apiUrl, string $apiKey, string $model, string $systemPrompt, string $userPrompt): void {
+	private function callOllama(string $apiUrl, string $apiKey, string $model, string $systemPrompt, string $userPrompt, string $reasoningEffort = 'none'): void {
 		$url = rtrim($apiUrl, '/') . '/api/chat';
 
 		$messages = [];

@@ -25,6 +25,11 @@ final class I18nTest extends TestCase {
 		'language_help',
 		'timeout',
 		'timeout_help',
+		'reasoning_effort',
+		'reasoning_effort_none',
+		'reasoning_effort_low',
+		'reasoning_effort_high',
+		'reasoning_effort_help',
 		'save',
 	];
 

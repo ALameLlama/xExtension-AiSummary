@@ -21,6 +21,11 @@ return [
 		'language_help' => 'Język generowanych podsumowań. Auto używa języka interfejsu FreshRSS.',
 		'timeout' => 'Limit czasu żądania (sekundy)',
 		'timeout_help' => 'Maksymalna liczba sekund oczekiwania na odpowiedź dostawcy AI. Domyślnie: 30. Zakres: 1-300.',
+		'reasoning_effort' => 'Wysiłek wnioskowania',
+		'reasoning_effort_none' => 'Brak',
+		'reasoning_effort_low' => 'Niski',
+		'reasoning_effort_high' => 'Wysoki',
+		'reasoning_effort_help' => 'Kontroluje, jak bardzo model wnioskować przed odpowiedzią. Większy wysiłek używa więcej tokenów i czasu, ale może dawać lepsze wyniki. Dostępne tylko dla niektórych modeli.',
 		'save' => 'Zapisz',
 	],
 ];

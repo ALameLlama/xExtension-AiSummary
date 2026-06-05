@@ -21,6 +21,11 @@ return [
 		'language_help' => 'Taal voor gegenereerde samenvattingen. Auto gebruikt uw FreshRSS-interfacetaal.',
 		'timeout' => 'Verzoek-time-out (seconden)',
 		'timeout_help' => 'Maximaal aantal seconden om te wachten op een antwoord van de AI-provider. Standaard: 30. Bereik: 1-300.',
+		'reasoning_effort' => 'Redeneerinspanning',
+		'reasoning_effort_none' => 'Geen',
+		'reasoning_effort_low' => 'Laag',
+		'reasoning_effort_high' => 'Hoog',
+		'reasoning_effort_help' => 'Regelt hoeveel het model redeneert voordat het antwoordt. Hogere inspanning gebruikt meer tokens en tijd maar kan betere resultaten opleveren. Alleen beschikbaar voor bepaalde modellen.',
 		'save' => 'Opslaan',
 	],
 ];

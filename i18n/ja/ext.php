@@ -21,6 +21,11 @@ return [
 		'language_help' => '生成される要約の言語。自動の場合、FreshRSSのインターフェース言語を使用します。',
 		'timeout' => 'リクエストタイムアウト（秒）',
 		'timeout_help' => 'AIプロバイダーの応答を待つ最大秒数。デフォルト：30。範囲：1-300。',
+		'reasoning_effort' => '推論の強さ',
+		'reasoning_effort_none' => 'なし',
+		'reasoning_effort_low' => '低',
+		'reasoning_effort_high' => '高',
+		'reasoning_effort_help' => '回答前にモデルがどの程度推論するかを制御します。高い推論はより多くのトークンと時間を消費しますが、より良い結果を生む可能性があります。特定のモデルでのみ利用可能です。',
 		'save' => '保存',
 	],
 ];

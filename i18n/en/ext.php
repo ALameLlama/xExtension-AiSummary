@@ -21,6 +21,11 @@ return [
 		'language_help' => 'Language used for generated summaries. Auto uses your FreshRSS interface language.',
 		'timeout' => 'Request Timeout (seconds)',
 		'timeout_help' => 'Maximum seconds to wait for the AI provider to respond. Default: 30. Range: 1-300.',
+		'reasoning_effort' => 'Reasoning Effort',
+		'reasoning_effort_none' => 'None',
+		'reasoning_effort_low' => 'Low',
+		'reasoning_effort_high' => 'High',
+		'reasoning_effort_help' => 'Controls how much the model reasons before answering. Higher effort uses more tokens and time but may produce better results. Only available for certain models.',
 		'save' => 'Save',
 	],
 ];

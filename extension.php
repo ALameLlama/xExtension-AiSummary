@@ -8,6 +8,11 @@ final class AiSummaryExtension extends Minz_Extension {
 	public const TIMEOUT_MAX = 300;
 	public const TIMEOUT_DEFAULT = 30;
 
+	public const REASONING_EFFORT_NONE = 'none';
+	public const REASONING_EFFORT_LOW = 'low';
+	public const REASONING_EFFORT_HIGH = 'high';
+	public const REASONING_EFFORT_DEFAULT = 'none';
+
 	#[\Override]
 	public function init(): void {
 		Minz_View::appendStyle($this->getFileUrl('style.css', 'css'));
@@ -37,6 +42,11 @@ final class AiSummaryExtension extends Minz_Extension {
 				$timeout = self::TIMEOUT_DEFAULT;
 			}
 			$user_conf->_attribute('ai_summary_timeout', $timeout);
+			$reasoningEffort = Minz_Request::paramString('ai_summary_reasoning_effort');
+			if (!in_array($reasoningEffort, [self::REASONING_EFFORT_NONE, self::REASONING_EFFORT_LOW, self::REASONING_EFFORT_HIGH], true)) {
+				$reasoningEffort = self::REASONING_EFFORT_DEFAULT;
+			}
+			$user_conf->_attribute('ai_summary_reasoning_effort', $reasoningEffort);
 			$user_conf->save();
 		}
 	}

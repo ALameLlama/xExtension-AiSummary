@@ -21,6 +21,11 @@ return [
 		'language_help' => '生成摘要使用的语言。自动使用您的 FreshRSS 界面语言。',
 		'timeout' => '请求超时（秒）',
 		'timeout_help' => '等待 AI 提供商响应的最长秒数。默认值：30。范围：1-300。',
+		'reasoning_effort' => '推理力度',
+		'reasoning_effort_none' => '无',
+		'reasoning_effort_low' => '低',
+		'reasoning_effort_high' => '高',
+		'reasoning_effort_help' => '控制模型在回答前的推理深度。更高的推理力度会使用更多 token 和时间，但可能产生更好的结果。仅对特定模型可用。',
 		'save' => '保存',
 	],
 ];
